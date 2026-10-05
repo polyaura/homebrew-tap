@@ -3,9 +3,9 @@
 class Cloak < Formula
   desc "Run a small language model (Gemma 3 1B) locally from the command line"
   homepage "https://github.com/polyaura/homebrew-tap"
-  # Proprietary: the Cloak CLI & Brain Beta License (LICENSE in the archive).
-  # Commercial use permitted. Redistribution, sublicensing, and resale of
-  # Cloak CLI or Brain require Polyaura LLC’s prior written permission.
+  # Proprietary license; see LICENSE in the archive.
+  # Commercial use is permitted. Redistribution, sublicensing, and resale of
+  # Cloak CLI require Polyaura LLC’s prior written permission.
   # Third-party dependencies remain subject to their respective licenses.
   license :cannot_represent
   url "https://github.com/polyaura/homebrew-tap/releases/download/v0.2.0/cloak-0.2.0-macos-arm64.tar.gz"
