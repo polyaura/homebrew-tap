@@ -8,9 +8,9 @@ class Cloak < Formula
   # Cloak CLI require Polyaura LLC’s prior written permission.
   # Third-party dependencies remain subject to their respective licenses.
   license :cannot_represent
-  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.4.3/cloak-0.4.3-macos-arm64.tar.gz"
-  sha256 "6dc6567a083d846faaa1ceaf648230c49cc6a6d4e6417b6ec5359aab462cea41"
-  version "0.4.3"
+  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.4.4/cloak-0.4.4-macos-arm64.tar.gz"
+  sha256 "8a3628f0954eebbaab2650ada8390b0364ad3aab81031158890ad64acf4160c2"
+  version "0.4.4"
 
   # The release is built for Apple silicon, macOS 14 or later (cli/release).
   depends_on arch: :arm64
@@ -59,7 +59,7 @@ class Cloak < Formula
     # Task mode, by capability: what cloak doctor checks for.
     assert_match "; features: task, text)", local_version
     help = shell_output("#{bin}/cloak --help")
-    %w[cloak\ setup cloak\ doctor cloak\ init].each { |command| assert_match command, help }
+    %w[cloak\ setup cloak\ doctor cloak\ init cloak\ example].each { |command| assert_match command, help }
     %w[CLIENTS.md CONTRACT-v2.md CONTRACT.md SECURITY.md sample-request-v2.json sample-request.json].each do |doc|
       assert_predicate libexec/doc, :exist?
     end
@@ -137,6 +137,19 @@ class Cloak < Formula
       assert_match "\"code\":\"malformed_request\"", injected
       text = pipe_output("#{bin}/cloak-local --task title 2>/dev/null", '{"text": "user: hi"}', 1)
       assert_match "\"code\":\"inference_failed\"", text
+    end
+
+    # cloak example: the example chat, then never over it; cloak finds its
+    # OpenAI call and names it the candidate, without a model.
+    cd testpath do
+      assert_match "Created cloak-example-chat.", shell_output("#{bin}/cloak example")
+      assert_equal %w[README.md chat.py], Dir.children(testpath/"cloak-example-chat").sort
+      assert_match "already exists", shell_output("#{bin}/cloak example 2>&1", 1)
+    end
+    cd testpath/"cloak-example-chat" do
+      found = shell_output("#{bin}/cloak < /dev/null")
+      assert_match "Found cloud AI in this project: 1 OpenAI call in 1 file.", found
+      assert_match "reply() in chat.py:", found
     end
   end
 end
