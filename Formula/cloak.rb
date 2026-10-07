@@ -8,9 +8,9 @@ class Cloak < Formula
   # Cloak CLI require Polyaura LLC’s prior written permission.
   # Third-party dependencies remain subject to their respective licenses.
   license :cannot_represent
-  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.5.0/cloak-0.5.0-macos-arm64.tar.gz"
-  sha256 "100e885cf581f89f6a6eaee969fa541fdf8a05e846781e7a10704bbf766fa7c3"
-  version "0.5.0"
+  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.5.1/cloak-0.5.1-macos-arm64.tar.gz"
+  sha256 "df897c2d9cc697d110f47ed2b979c32e17b7bc8a2047f5a53a781ce42f0b2315"
+  version "0.5.1"
 
   # The release is built for Apple silicon, macOS 14 or later (cli/release).
   depends_on arch: :arm64
