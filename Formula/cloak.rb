@@ -8,9 +8,9 @@ class Cloak < Formula
   # Cloak CLI require Polyaura LLC’s prior written permission.
   # Third-party dependencies remain subject to their respective licenses.
   license :cannot_represent
-  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.4.7/cloak-0.4.7-macos-arm64.tar.gz"
-  sha256 "9c4366a4ef817353529306d31e6951a192a404e788b9c83c3f66fe6fc721a4e2"
-  version "0.4.7"
+  url "https://github.com/polyaura/homebrew-tap/releases/download/v0.5.0/cloak-0.5.0-macos-arm64.tar.gz"
+  sha256 "100e885cf581f89f6a6eaee969fa541fdf8a05e846781e7a10704bbf766fa7c3"
+  version "0.5.0"
 
   # The release is built for Apple silicon, macOS 14 or later (cli/release).
   depends_on arch: :arm64
@@ -122,7 +122,7 @@ class Cloak < Formula
     PY
     cd testpath/"app" do
       found = shell_output("#{bin}/cloak < /dev/null")
-      assert_match "Found cloud AI in this project: 1 OpenAI call in 1 file.", found
+      assert_match "Found 1 cloud AI job in this project.", found
       assert_match "Best local candidate:", found
       assert_match "Run cloak in a terminal to try it locally.", found
       refute_predicate testpath/"app/cloak.json", :exist?
@@ -148,7 +148,7 @@ class Cloak < Formula
     end
     cd testpath/"cloak-example-chat" do
       found = shell_output("#{bin}/cloak < /dev/null")
-      assert_match "Found cloud AI in this project: 1 OpenAI call in 1 file.", found
+      assert_match "Found 1 cloud AI job in this project.", found
       assert_match "reply() in chat.py:", found
     end
   end

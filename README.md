@@ -4,9 +4,12 @@
     cd your-project
     cloak
 
-In a project that calls OpenAI or Claude, `cloak` finds the AI it uses, picks
-the job a local model can most likely do, and runs it on your Mac, so you see
-the local answer before changing any code.
+Cloak finds cloud AI work and moves supported jobs local without making
+developers think about the language or cloud provider underneath. In a
+project's folder, `cloak` finds its AI jobs, runs the one a local model can
+most likely do on your Mac, so you see the local answer before changing any
+code, and on a yes moves it local, with the cloud call kept as the fallback.
+Today: OpenAI and Claude, from Python, JavaScript and TypeScript.
 
 Commercial use of Cloak CLI is permitted. Redistribution, sublicensing, and resale of Cloak CLI require Polyaura LLC’s prior written permission. Third-party dependencies remain subject to their respective licenses.
 
